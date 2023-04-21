@@ -1,0 +1,3 @@
+include ':inmo air2'
+include ':inmo air1'
+rootProject.name = "ProjectSDK"

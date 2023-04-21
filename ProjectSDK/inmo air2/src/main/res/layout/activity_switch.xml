@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".switchs.SwitchActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Switch"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
+
+    <TextView
+        android:text="Single Tap to switch ON/OFF"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Switch
+        android:id="@+id/switch_btn"
+        android:textOn="on"
+        android:textOff="off"
+        android:showText="true"
+        android:layout_gravity="center"
+        android:thumb="@drawable/switch_button_thumb"
+        android:track="@drawable/switch_button_track"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

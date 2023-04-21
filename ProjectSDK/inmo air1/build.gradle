@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.inmo.projectsdk"
+        minSdkVersion 26
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "versionCode"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                // 打包完成后输出路径
+                def name = ((project.name != "app") ? project.name : rootProject.name.replace(" ", "")) +
+                        "_" + variant.flavorName +
+                        "_" + variant.buildType.name +
+                        "_" + variant.versionName +
+                        "_" + new Date().format('yyyyMMddhhmm') + ".apk"
+                // 相对路径app/build/outputs/apk/oversea/release/
+                def path = "../../../../../apk/" //相当于路径 app/apk/
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 指定路径输出
+                        output.outputFileName = new File(path, name)
+                    }
+                }
+            }
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.debug
+            applicationVariants.all { variant ->
+                // 打包完成后输出路径
+                def name = ((project.name != "app") ? project.name : rootProject.name.replace(" ", "")) +
+                        "_" + variant.flavorName +
+                        "_" + variant.buildType.name +
+                        "_" + variant.versionName +
+                        "_" + new Date().format('yyyyMMddhhmm') + ".apk"
+                // 相对路径app/build/outputs/apk/oversea/release/
+                def path = "../../../../../apk/" //相当于路径 app/apk/
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 指定路径输出
+                        output.outputFileName = new File(path, name)
+                    }
+                }
+            }
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'com.inmo:inmo_appkitmodule:+'
+    implementation 'com.inmo:inmo_remotedevicemodule:+'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    //自动化测试
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+}
